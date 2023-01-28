@@ -8,7 +8,28 @@ export const cartSlice = createSlice({
   },
   reducers: {
     setProducts: (state, action) => {
-      state.products = [...state.products, action.payload];
+      let tempProducts = [...state.products];
+      const updatedProduct = {
+        quantity: 1,
+        product: action.payload,
+      };
+      const targetProduct = tempProducts.find((item) => {
+        return action.payload.id === item.product.id;
+      });
+      if (targetProduct) {
+        tempProducts = tempProducts.map((item) => {
+          if (action.payload.id === item.product.id) {
+            return {
+              ...item,
+              quantity: item.quantity + 1,
+            };
+          }
+          return item;
+        });
+        state.products = [...tempProducts];
+      } else {
+        state.products = [...tempProducts, updatedProduct];
+      }
     },
   },
 });

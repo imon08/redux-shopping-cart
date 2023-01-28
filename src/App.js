@@ -35,6 +35,7 @@ function App() {
           return (
             <ProductCard
               key={item.id}
+              id={item.id}
               name={item.productName}
               price={item.price}
               image={item.image}

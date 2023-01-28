@@ -2,11 +2,12 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { setProducts } from "../slices/cartSlice";
 
-const ProductCard = ({ name, price, image }) => {
+const ProductCard = ({ id, name, price, image }) => {
   const dispatch = useDispatch();
 
   const handleClick = () => {
     const product = {
+      id,
       name,
       price,
       image,
