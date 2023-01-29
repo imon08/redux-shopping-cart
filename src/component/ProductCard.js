@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { setProducts } from "../slices/cartSlice";
+import { increaseItem } from "../slices/cartSlice";
 
 const ProductCard = ({ id, name, price, image }) => {
   const dispatch = useDispatch();
@@ -12,7 +12,7 @@ const ProductCard = ({ id, name, price, image }) => {
       price,
       image,
     };
-    dispatch(setProducts(product));
+    dispatch(increaseItem(product));
   };
 
   return (

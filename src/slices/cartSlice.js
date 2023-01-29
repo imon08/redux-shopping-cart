@@ -6,7 +6,7 @@ export const cartSlice = createSlice({
     products: JSON.parse(localStorage.getItem("products")) || [],
   },
   reducers: {
-    setProducts: (state, action) => {
+    increaseItem: (state, action) => {
       const updatedProduct = {
         quantity: 1,
         product: action.payload,
@@ -16,12 +16,20 @@ export const cartSlice = createSlice({
       });
 
       if (targetIndex >= 0) {
-        state.products[targetIndex] = {
-          ...state.products[targetIndex],
-          quantity: state.products[targetIndex].quantity + 1,
-        };
+        state.products[targetIndex].quantity += 1;
       } else {
         state.products = [...state.products, updatedProduct];
+      }
+      localStorage.setItem("products", JSON.stringify(state.products));
+    },
+    decreaseItem: (state, action) => {
+      const targetIndex = state.products.findIndex((item) => {
+        return action.payload === item.product.id;
+      });
+      if (state.products[targetIndex].quantity > 1) {
+        state.products[targetIndex].quantity -= 1;
+      } else {
+        state.products.splice(targetIndex, 1);
       }
       localStorage.setItem("products", JSON.stringify(state.products));
     },
@@ -29,7 +37,7 @@ export const cartSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { setProducts } = cartSlice.actions;
+export const { increaseItem, decreaseItem } = cartSlice.actions;
 
 export const getProducts = (state) => state.cart.products;
 

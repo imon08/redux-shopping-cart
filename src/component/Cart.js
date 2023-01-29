@@ -1,10 +1,11 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { getProducts } from "../slices/cartSlice";
+import { getProducts, getTotalPrice } from "../slices/cartSlice";
 import CartItem from "./CartItem";
 
 const Cart = () => {
   const products = useSelector(getProducts);
+  const totalPrice = useSelector(getTotalPrice)
   return (
     <div>
       <h1 className="flex justify-center font-bold text-3xl m-3">SHOPPING CART</h1>
@@ -21,6 +22,10 @@ const Cart = () => {
             />
           );
         })}
+      </div>
+      <div className="flex justify-end w-full text-2xl p-4 gap-4">
+        <p>Total:</p>
+        <p>₹{totalPrice}</p>
       </div>
     </div>
   );
