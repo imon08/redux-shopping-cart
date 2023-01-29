@@ -16,9 +16,9 @@ const ProductCard = ({ id, name, price, image }) => {
   };
 
   return (
-    <div className="border-black border-2 w-fit rounded-lg text-center bg-gray-200 overflow-hidden">
+    <div className="border-black border-2 w-fit rounded-lg text-center overflow-hidden">
       <div>
-        <img className="w-48 h-52 object-cover" src={image} alt={name} />
+        <img className="w-48 h-52 object-contain" src={image} alt={name} />
       </div>
       <span className="flex ">
         <p className="ml-2">Product:</p>
