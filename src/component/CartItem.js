@@ -23,16 +23,13 @@ const CartItem = ({ id, name, image, price, quantity }) => {
       <div className="h-44 w-48 ml-3">
         <img className="h-full w-full object-contain" src={image} alt={name} />
       </div>
-      <div className="flex justify-between w-full p-4">
+      <div className="flex flex-col sm:flex-row justify-between w-full p-4">
         <p className="w-[30%]">{name}</p>
-
         <p>₹{price}</p>
-
-        <div className="flex h-fit gap-2 border-gray-400 rounded-md border-2 px-2">
+        <div className="flex h-fit w-fit gap-2 border-gray-400 rounded-md border-2 px-2">
           <button className="text-xl" onClick={handleDecrease}>
             -
           </button>
-
           <p>{quantity}</p>
           <button className="text-xl" onClick={handleIncrease}>
             +
